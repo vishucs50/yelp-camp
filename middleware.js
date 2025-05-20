@@ -41,6 +41,7 @@ const isAuth=async (req,res,next)=>{
     {
         req.flash('error','Unable to find campground');
         res.redirect('/campgrounds');
+        return;
     }
     else if(!camp.author.equals(req.user._id))
     {
