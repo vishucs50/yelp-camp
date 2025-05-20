@@ -21,6 +21,16 @@ YelpCamp is a full-stack web application for sharing and reviewing campgrounds. 
 - Flash messages for alerts and notifications
 -Sanitation of HTML and JS using express-mongo-sanitize
 
+## Usage
+- Visit the homepage to browse campgrounds.
+- Register or log in to create an account.
+- Add new campgrounds by filling out the submission form.
+- View campground details, including location on the map.
+- Post reviews and comments on campgrounds.
+- Manage your campgrounds and reviews through your profile.
+
+
+
 ## Technologies
 - Backend: Node.js, Express.js
 - Database: MongoDB, Mongoose
