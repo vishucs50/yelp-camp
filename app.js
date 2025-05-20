@@ -101,7 +101,13 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 
-mongoose.connect(dbUrl);
+mongoose.connect(dbUrl, {
+  ssl: true,
+ 
+  serverSelectionTimeoutMS: 10000,
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 const db=mongoose.connection;
 db.on("error",console.error.bind(console,"connection error:"));
 db.once("open",()=>console.log("Database connected"));
