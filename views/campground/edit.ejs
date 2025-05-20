@@ -1,0 +1,90 @@
+<% layout('layouts/boilerplate')%>
+<div class="row">
+    <h1 class="text-center">Edit Campground</h1>
+    <div class="col-md-6 offset-md-3">
+        <form action="/campgrounds/<%=foundcamp._id%>?_method=PATCH" method="POST" novalidate class="needs-validation" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label class="form-label" for="title">Title</label>
+                <input class="form-control" type="text" id="title" name="campground[title]"
+                    value="<%=foundcamp.title %>" required>
+                    <div class="valid-feedback">Looks good!</div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="location">Location</label>
+                <input class="form-control" type="text" id="location" name="campground[location]"
+                    value="<%=foundcamp.location %>" required>
+                    <div class="valid-feedback">Looks good!</div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="price">Campground Price</label>
+                <div class="input-group">
+                    <span class="input-group-text" id="price-label">$</span>
+                    <input type="text" class="form-control" id="price" placeholder="0.00" aria-label="price"
+                        aria-describedby="price-label" name="campground[price]" value="<%=foundcamp.price %>" required>
+                        <div class="valid-feedback">Looks good!</div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="description">Description</label>
+                <textarea class="form-control" type="text" id="description"
+                    name="campground[description]" required><%= foundcamp.description%> </textarea>
+                    <div class="valid-feedback">Looks good!</div>
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label fw-semibold">Upload Images</label>
+                <input 
+                  class="form-control" 
+                  type="file" 
+                  id="image" 
+                  name="image" 
+                  multiple
+                >
+                <div id="fileList" class="form-text text-muted mt-2">You can upload multiple images (JPEG, PNG, JPG).</div>
+              </div>
+
+
+              <!--for deleting existing images-->
+              <div class="mb-3">
+                <label class="form-label fw-semibold">Existing Images</label>
+                <div class="row g-3">
+                  <% foundcamp.images.forEach(function(img, i) { %>
+                    <div class="col-6 col-md-4 col-lg-3">
+                      <div class="position-relative">
+                        <img 
+                          src="<%= img.thumbnail %>" 
+                          class="img-thumbnail w-100 shadow-sm rounded" 
+                          alt="Image <%= i + 1 %>">
+                        
+                        <div class="position-absolute top-0 end-0 p-2 bg-white bg-opacity-75 rounded">
+                          <div class="form-check m-0">
+                            <input 
+                              class="form-check-input" 
+                              type="checkbox" 
+                              id="image-<%= i %>" 
+                              name="deleteImages[]" 
+                              value="<%= img.filename %>">
+                            <label 
+                              class="form-check-label text-danger small" 
+                              for="image-<%= i %>">
+                              Delete
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  <% }) %>
+                </div>
+              </div>
+              
+            
+
+        </div>
+            <div class="mb-3">
+                <button class="btn btn-info">Update Campground</button>
+            </div>
+        </form>
+        <a href="/campgrounds/<%= foundcamp._id%>">Back To Campground</a>
+
+    </div>
+</div>
