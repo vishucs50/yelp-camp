@@ -9,7 +9,10 @@ module.exports.registerUser = async (req, res) => {
     const user = new User({ email, username });
     const registeredUser = await User.register(user, password);
     req.login(registeredUser, (err) => {
-      if (err) return next(err);
+      if (err)
+        {
+         return next(err);
+        } 
       req.flash("success", "welcome back");
       res.redirect("/campgrounds");
     });
